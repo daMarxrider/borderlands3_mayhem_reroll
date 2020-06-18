@@ -1,3 +1,3 @@
-import time,mss.tools,numpy,pytesseract as t,pywinauto as p;from PIL import ImageEnhance as e,ImageOps as o,Image as i;d=[];s=mss.mss();n=s.monitors[3]
-while m:=input():d.append(m)
-while 1:c=len([m for m in d if m.lower()in t.image_to_string(e.Sharpness(e.Contrast(o.invert(o.grayscale(i.fromarray(numpy.asarray(s.grab({"top":n["top"]+250,"left":n["left"]+2000,"width":1500,"height":1500,"mon":3})))))).enhance(1)).enhance(1)).lower()]);exit()if(c in[len(d),4])else p.Application().connect(title_re='Bord.+3').window().send_keystrokes('q');time.sleep(1)
+import time,mss.tools,numpy,pytesseract as t,pywinauto as p;from PIL import ImageOps as o,Image as i;d=[];s=mss.mss();n=s.monitors[3];w=n['width']
+while m:=input():d+=[m]
+while 1:c=len([m for m in d if m in t.image_to_string(o.invert(o.grayscale(i.fromarray(numpy.asarray(s.grab({"top":0,"left":w*2//3,"width":w,"height":n['height'],"mon":3}))))))]);exit()if c in[len(d),4]else p.Application().connect(title_re='Bo.+3').window().send_keystrokes('q');time.sleep(1)
